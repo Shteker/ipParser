@@ -8,9 +8,14 @@ public class IpParser {
 
         public static void main(String[] args) throws IOException {
             String filePath = "./src/main/resources/doc2.txt";
-
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            long distinct = reader.lines().distinct().count();
-            System.out.println(distinct);
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            try {
+                long distinct = bufferedReader.lines().distinct().count();
+                System.out.println(distinct);
+            } finally {
+                bufferedReader.close();
+                fileReader.close();
+            }
         }
 }
